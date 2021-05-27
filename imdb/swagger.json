@@ -1,0 +1,261 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "IMDB REST API",
+        "version": "1.0",
+        "description": "REST API para poder obtener la info de peliculas, series, actores y directores del cine"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/v1",
+            "description": "Development"
+        },
+        {
+            "url": "http://myapp.heroku/api/v1",
+            "description": ""
+        }
+    ],
+    "paths": {
+        "/actors": {
+            "get": {
+                "description": "Obtener todos los actores de la db",
+                "tags": ["Actors"],
+                "responses": {
+                    "200": {
+                        "description": "lista de actores"
+                    }
+                }
+            },
+            "post": {
+                "description": "Crear un actor",
+                "tags": ["Actors"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Actor"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "se ha creador un actor"
+                    }
+                }
+            }
+        },
+        "/directors": {
+            "get": {
+                "description": "Obtener todos los directores",
+                "tags": ["Directors"],
+                "responses": {
+                    "200": {
+                        "description": "lista de directores"
+                    }
+                }
+            },
+            "post": {
+                "description": "crear un director",
+                "tags": ["Directors"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Director"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "se ha creado un director"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "description": "Obtener todos los usuarios de la db",
+                "tags": ["Users"],
+                "responses": {
+                    "200": {
+                        "description": "lista de usuarios"
+                    }
+                }
+            },
+            "post": {
+                "description": "Crear un usuario",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "se ha creador un usuario"
+                    }
+                }
+            }
+        },
+        "/contents": {
+            "get": {
+                "description": "Obtener todos los contenidos de la db",
+                "tags": ["Contents"],
+                "responses": {
+                    "200": {
+                        "description": "lista de contenidos"
+                    }
+                }
+            },
+            "post": {
+                "description": "Crear un contenido",
+                "tags": ["Contents"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Content"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "se ha creador un contenido"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Actor": {
+                "properties": {
+                    "firstname": {
+                        "type": "string",
+                        "description": "El nombre del actor"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "description": "El apellido del actor"
+                    },
+                    "dob": {
+                        "type": "date",
+                        "description": "Date of birth",
+                        "example": "1990-02-01"
+                    },
+                    "biography": {
+                        "type": "string"
+                    },
+                    "profile_photo": {
+                        "type": "string",
+                        "description": "image URL",
+                        "example": "https://example.com/imagen.jpg"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Director": {
+                "properties": {
+                    "firstname": {
+                        "type": "string",
+                        "description": "El nombre del director"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "description": "El apellido del director"
+                    },
+                    "dob": {
+                        "type": "date",
+                        "description": "Date of birth",
+                        "example": "1990-02-01"
+                    },
+                    "biography": {
+                        "type": "string"
+                    },
+                    "profile_photo": {
+                        "type": "string",
+                        "description": "image URL",
+                        "example": "https://example.com/imagen.jpg"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "User": {
+                "properties": {
+                    "firstname": {
+                        "type": "string",
+                        "description": "El nombre del usuario"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "description": "El apellido del usuario"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "Correo del usuario",
+                        "example": "example@example.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Contraseña del usuario"
+                    },
+                    "reset_token": {
+                        "type": "string"
+                    },
+                    "dob": {
+                        "type": "date",
+                        "description": "Date of birth",
+                        "example": "1990-02-01"
+                    },
+                    "profile_photo": {
+                        "type": "string",
+                        "description": "image URL",
+                        "example": "https://example.com/imagen.jpg"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Content": {
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "total_seasons": {
+                        "type": "integer"
+                    },
+                    "imdb_score": {
+                        "type": "integer"
+                    },
+                    "relase_date": {
+                        "type": "string"
+                    },
+                    "play_time": {
+                        "type": "integer"
+                    },
+                    "imdb_link": {
+                        "type": "string"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}
